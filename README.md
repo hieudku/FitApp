@@ -50,7 +50,7 @@ When pulling the project repository to a new computer, follow these steps to ens
   - CRUD operations for workouts
   - Navigation between pages
   - Database interactions
-<br />
+
   ```bash
   dotnet run
   
