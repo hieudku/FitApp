@@ -24,7 +24,37 @@ When pulling the project repository to a new computer, follow these steps to ens
   ```bash
   git clone <repository-url>
 
+### 3. Restore Dependencies
+
+- **Install .NET SDK**: Ensure that the .NET SDK version used in your project is installed on the new computer. You can check the required SDK version in your `.csproj` file.
   
+- **Restore NuGet Packages**: Run the following command to restore NuGet packages that your project depends on:
+
+  ```bash
+  dotnet restore
+
+### 4. Database Configuration
+
+- **Connection String**: Check the connection string in `appsettings.json`. Ensure it points to the correct database on the new machine.
+
+  ```json
+  "ConnectionStrings": {
+      "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=FitAppDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+
+### 5. Testing the Application
+
+- **Run the Application**: Start the application and test all major functionalities:
+  
+  - Registration and Login
+  - CRUD operations for workouts
+  - Navigation between pages
+  - Database interactions
+
+  ```bash
+  dotnet run
+
+ 
 ## Class Diagram
 ![](ClassDiagram/Fithub-UMLClassDiagram.jpg)
 
