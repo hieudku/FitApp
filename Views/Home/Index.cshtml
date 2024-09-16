@@ -1,7 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<FitApp.Models.Workouts>
+
+@{
+    ViewData["Title"] = "Welcome to FitApp";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Create your own workout program</h1>
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to FitApp</h1>
+    <p class="lead">Your ultimate fitness companion to track and manage your workouts.</p>
+    <hr class="my-4">
+    <p>Whether you are just starting or are a seasoned athlete, FitApp helps you stay on top of your fitness goals.</p>
+    <a class="btn btn-primary btn-lg" asp-action="Index" asp-controller="Workouts">View Workouts</a>
+    <a class="btn btn-success btn-lg" asp-action="Create" asp-controller="Workouts">Create New Workout</a>
 </div>
+
+<div class="container">
+    <h2>Featured Workouts</h2>
+    <div class="row">
+        @foreach (var workout in Model.Take(3))
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@workout.Name</h5>
+                        <p class="card-text">@workout.Description</p>
+                        <a asp-action="Details" asp-route-id="@workout.Id" class="btn btn-info">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container text-center mt-5">
+    <h2>About FitApp</h2>
+    <p>FitApp is designed to help you keep track of your fitness journey. Create and manage workouts, monitor your progress, and stay motivated with our intuitive platform.</p>
+    <a class="btn btn-secondary" href="#">Learn More</a>
+</div>
+
