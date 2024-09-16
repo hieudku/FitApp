@@ -8,7 +8,7 @@ When pulling the project repository to a new computer, follow these steps to ens
 
 ### 1. Version Control (Git) Setup
 
-- **Ensure All Files Are Committed and Pushed**: Before pulling the repository to another computer, make sure that all files are committed and pushed to your remote repository. This includes:
+- **Make sure Files are Committed and Pushed**: Before pulling the repository to another computer, make sure that all files are committed and pushed to your remote repository. This includes:
   - `Controllers`
   - `Views`
   - `Models`
