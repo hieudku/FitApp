@@ -53,6 +53,12 @@ When pulling the project repository to a new computer, follow these steps to ens
 
   ```bash
   dotnet run
+
+### 6. For Entity Framework Core
+
+- Running migrations to make sure database is up-to-date
+  ```bash
+  dotnet ef database update
 ## Class Diagram
 ![](ClassDiagram/Fithub-UMLClassDiagram.jpg)
 
