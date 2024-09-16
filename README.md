@@ -42,7 +42,10 @@ When pulling the project repository to a new computer, follow these steps to ens
   "ConnectionStrings": {
       "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=FitAppDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
+- Update the database to local machine: :point_down:
 
+  ```bash
+  Database-Update
 ### Testing the Application
 
 - Start the application and test all major functionalities:
