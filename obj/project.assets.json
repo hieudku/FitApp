@@ -8529,24 +8529,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hieuc\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\hieu.cu_it.weltec\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hieuc\\source\\repos\\FitApp\\FitApp\\FitApp.csproj",
+      "projectUniqueName": "C:\\Users\\hieu.cu_it.weltec\\Documents\\GitHub\\FitApp\\FitApp.csproj",
       "projectName": "FitApp",
-      "projectPath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\FitApp\\FitApp.csproj",
-      "packagesPath": "C:\\Users\\hieuc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\FitApp\\obj\\",
+      "projectPath": "C:\\Users\\hieu.cu_it.weltec\\Documents\\GitHub\\FitApp\\FitApp.csproj",
+      "packagesPath": "C:\\Users\\hieu.cu_it.weltec\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hieu.cu_it.weltec\\Documents\\GitHub\\FitApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\hieuc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\hieu.cu_it.weltec\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8568,7 +8567,9 @@
         ]
       },
       "restoreAuditProperties": {
-        "enableAudit": "default"
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8629,7 +8630,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
