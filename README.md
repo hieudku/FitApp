@@ -45,7 +45,7 @@ When pulling the project repository to a new computer, follow these steps to ens
 - Update the database to local machine: :point_down:
 
   ```bash
-  Database-Update
+  Update-Database
 ### Testing the Application
 
 - Start the application and test all major functionalities:
