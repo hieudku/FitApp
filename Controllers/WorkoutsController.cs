@@ -20,11 +20,29 @@ namespace FitApp.Controllers
         }
 
         // GET: Workouts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Workouts.ToListAsync());
+            // Search
+            if (_context.Workouts == null)
+            {
+                return Problem("Entity set 'FitAppContext.Workouts' is null");
+            }
+            var workouts = from w in _context.Workouts
+                           select w;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                workouts = workouts.Where(s => s.Name!.ToUpper().Contains(searchString.ToUpper()));
+            }
+            return View(await workouts.ToListAsync());
         }
 
+        
+        [HttpPost]
+        public string Index(string searchString, bool noyUsed)
+        {
+            return "From [HttpPost] Index: filter on " + searchString;
+        }
+        
         // GET: Workouts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
