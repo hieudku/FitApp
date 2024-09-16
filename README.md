@@ -1,5 +1,5 @@
 # FitApp
-:fire::fire::fire::fire::fire::fire: <br />
+:runner::fire::fire::fire::fire::fire::fire: <br />
  Group project - web application development and testing
 # Project Setup Instructions
 
