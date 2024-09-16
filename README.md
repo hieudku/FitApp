@@ -1,5 +1,5 @@
 # FitApp
-:fire::fire::fire::fire::fire::fire:
+:fire::fire::fire::fire::fire::fire: <br />
  Group project - web application development and testing
 # Project Setup Instructions
 
@@ -20,7 +20,7 @@ When pulling the project repository to a new computer, follow these steps to ens
 
 ### Pulling the Repository
 
-- On the new computer, clone the repository or pull the latest changes from the remote repository.:point_down:
+- On the new computer, clone the repository or pull the latest changes from the remote repository. :point_down:
 
   ```bash
   git clone <repository-url>
@@ -29,14 +29,14 @@ When pulling the project repository to a new computer, follow these steps to ens
 
 - Ensure that the .NET SDK version used in your project is installed on the new computer. You can check the required SDK version in your `.csproj` file.
   
-- Run the following command to restore NuGet packages that your project depends on::point_down:
+- Run the following command to restore NuGet packages that your project depends on: :point_down:
 
   ```bash
   dotnet restore
 
 ### Database Configuration
 
-- Check the connection string in `appsettings.json`. Ensure it points to the correct database on the new machine.:point_down:
+- Check the connection string in `appsettings.json`. Ensure it points to the correct database on the new machine. :point_down:
 
   ```json
   "ConnectionStrings": {
