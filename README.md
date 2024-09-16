@@ -50,10 +50,14 @@ When pulling the project repository to a new computer, follow these steps to ens
   - CRUD operations for workouts
   - Navigation between pages
   - Database interactions
-
+<br />
   ```bash
   dotnet run
 
+**Database Migration**: If you use Entity Framework Core, ensure that the database is up to date by running migrations:
+
+```bash
+dotnet ef database update
  
 ## Class Diagram
 ![](ClassDiagram/Fithub-UMLClassDiagram.jpg)
