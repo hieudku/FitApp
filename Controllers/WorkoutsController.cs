@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FitApp.Data;
+using FitApp.Models;
 
-namespace FitApp.Models
+namespace FitApp.Controllers
 {
     public class WorkoutsController : Controller
     {
