@@ -18,7 +18,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    
 }
 
 .btn-custom {
@@ -32,7 +33,7 @@ body {
     border-color: #0056b3;
 }
 .jumbotron {
-    background: linear-gradient(45deg, #007bff, #00c6ff);
+    background: linear-gradient(45deg, #0056b2, #00c6ff);
     color: white;
 }
 
@@ -43,6 +44,10 @@ body {
 
 .card-body {
     background-color: #f8f9fa;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .btn-lg {

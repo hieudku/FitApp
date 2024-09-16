@@ -16,24 +16,31 @@
 <div class="container">
     <h2>Featured Workouts</h2>
     <div class="row">
-        @foreach (var workout in Model.Take(3))
+        @if (Model != null && Model.Any())
         {
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">@workout.Name</h5>
-                        <p class="card-text">@workout.Description</p>
-                        <a asp-action="Details" asp-route-id="@workout.Id" class="btn btn-info">View Details</a>
+            @foreach (var workout in Model.Take(3))
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@workout.Name</h5>
+                            <p class="card-text">@workout.Description</p>
+                            <a asp-action="Details" asp-route-id="@workout.Id" asp-controller="Workouts" class="btn btn-info">View Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+        }
+        else
+        {
+            <p>No workouts available at the moment. Please check back later.</p>
         }
     </div>
 </div>
 
 <div class="container text-center mt-5">
     <h2>About FitApp</h2>
-    <p>FitApp is designed to help you keep track of your fitness journey. Create and manage workouts, monitor your progress, and stay motivated with our intuitive platform.</p>
+    <p>FitApp is designed to help you keep track of your fitness journey. Create, manage workouts and monitor your progress.</p>
     <a class="btn btn-secondary" href="#">Learn More</a>
 </div>
 
