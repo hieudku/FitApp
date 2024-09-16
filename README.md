@@ -50,8 +50,8 @@ When pulling the project repository to a new computer, follow these steps to ens
   - Registration and Login
   - CRUD operations for workouts
   - Navigation between pages
-  - Database interactions
-:point_down:
+  - Database interactions :point_down:
+
   ```bash
   dotnet run
 
