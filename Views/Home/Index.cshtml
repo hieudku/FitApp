@@ -4,13 +4,18 @@
     ViewData["Title"] = "Welcome to FitApp";
 }
 
-<div class="jumbotron text-center">
-    <h1 class="display-4">Welcome to FitApp</h1>
-    <p class="lead">Your ultimate fitness companion to track and manage your workouts.</p>
-    <hr class="my-4">
-    <p>Whether you are just starting or are a seasoned athlete, FitApp helps you stay on top of your fitness goals.</p>
-    <a class="btn btn-primary btn-lg" asp-action="Index" asp-controller="Workouts">View Workouts</a>
-    <a class="btn btn-success btn-lg" asp-action="Create" asp-controller="Workouts">Create New Workout</a>
+<div class="fullscreen-container">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to FitApp</h1>
+        <p class="lead">Your ultimate fitness companion to track and manage your workouts.</p>
+        <hr class="my-4">
+        <p>Whether you are just starting or are a seasoned athlete, FitApp helps you stay on top of your fitness goals.</p>
+        <div class="start-buttons">
+            <a class="btn btn-success btn-lg" asp-action="Index" asp-controller="Workouts">View Workouts</a>
+            <a class="btn btn-success btn-lg" asp-action="Create" asp-controller="Workouts">Create New Workout</a>
+            <a class="btn btn-success btn-lg" asp-action="" asp-controller="Workouts">Create Workout Plan</a>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -43,4 +48,3 @@
     <p>FitApp is designed to help you keep track of your fitness journey. Create, manage workouts and monitor your progress.</p>
     <a class="btn btn-secondary" href="#">Learn More</a>
 </div>
-
