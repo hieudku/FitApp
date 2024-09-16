@@ -53,9 +53,6 @@ When pulling the project repository to a new computer, follow these steps to ens
 
   ```bash
   dotnet run
-  
-
-
 ## Class Diagram
 ![](ClassDiagram/Fithub-UMLClassDiagram.jpg)
 
