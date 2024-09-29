@@ -13,7 +13,6 @@
       "NET5_0_OR_GREATER",
       "NET6_0_OR_GREATER",
       "NET7_0_OR_GREATER",
-      "NET8_0_OR_GREATER",
       "NETCOREAPP1_0_OR_GREATER",
       "NETCOREAPP1_1_OR_GREATER",
       "NETCOREAPP2_0_OR_GREATER",
@@ -22,7 +21,7 @@
       "NETCOREAPP3_0_OR_GREATER",
       "NETCOREAPP3_1_OR_GREATER"
     ],
-    "languageVersion": "12.0",
+    "languageVersion": "",
     "platform": "",
     "allowUnsafe": false,
     "warningsAsErrors": false,
@@ -162,7 +161,6 @@
           "Microsoft.Extensions.ObjectPool": "8.0.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0.0",
           "Microsoft.Extensions.Options.DataAnnotations": "8.0.0.0",
-          "Microsoft.Extensions.Options.Reference": "8.0.0.0",
           "Microsoft.Extensions.Primitives.Reference": "8.0.0.0",
           "Microsoft.Extensions.WebEncoders": "8.0.0.0",
           "Microsoft.Net.Http.Headers": "8.0.0.0",
@@ -1937,6 +1935,9 @@
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.224.6711"
           }
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Options.dll": {}
         }
       },
       "Microsoft.Extensions.Primitives/8.0.0": {},
@@ -3402,12 +3403,6 @@
       "Microsoft.Extensions.Options.DataAnnotations/8.0.0.0": {
         "compile": {
           "Microsoft.Extensions.Options.DataAnnotations.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.Extensions.Options.Reference/8.0.0.0": {
-        "compile": {
-          "Microsoft.Extensions.Options.dll": {}
         },
         "compileOnly": true
       },
@@ -6266,11 +6261,6 @@
       "sha512": ""
     },
     "Microsoft.Extensions.Options.DataAnnotations/8.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Extensions.Options.Reference/8.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
