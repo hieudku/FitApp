@@ -23,68 +23,34 @@ namespace FitApp.Controllers
             _userManager = userManager;
         }
 
-        // GET: UserSpecificWorkouts
-        public async Task<IActionResult> Index()
-        {
-            var userId = _userManager.GetUserId(User);
-            var userWorkouts = _context.UserSpecificWorkouts
-                .Where(uw => uw.UserId == userId);
+        // USER-SPECIFIC WORKOUTS OPERATIONS (for all users)
 
-            return View(await userWorkouts.ToListAsync());
-        }
-
-        // GET: UserSpecificWorkouts/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var userId = _userManager.GetUserId(User);
-            var userWorkout = await _context.UserSpecificWorkouts
-                .FirstOrDefaultAsync(uw => uw.Id == id && uw.UserId == userId);
-
-            if (userWorkout == null)
-            {
-                return NotFound();
-            }
-
-            return View(userWorkout);
-        }
-
-        // GET: UserSpecificWorkouts/Create
-        public IActionResult Create()
+        // GET: Workouts/CreateUserWorkout (For logged-in users)
+        [Authorize]
+        public IActionResult CreateUserWorkout()
         {
             return View();
         }
 
-        // POST: UserSpecificWorkouts/Create
+        // POST: Workouts/CreateUserWorkout (For logged-in users)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Duration,CaloriesBurned")] UserSpecificWorkout userWorkout)
+        [Authorize]
+        public async Task<IActionResult> CreateUserWorkout([Bind("Name,Description,Duration,CaloriesBurned")] UserSpecificWorkout userWorkout)
         {
             if (ModelState.IsValid)
             {
                 userWorkout.UserId = _userManager.GetUserId(User);
                 _context.UserSpecificWorkouts.Add(userWorkout);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                // Log validation errors
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                foreach (var error in errors)
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
+                return RedirectToAction(nameof(MyWorkouts));
             }
             return View(userWorkout);
         }
 
-        // GET: UserSpecificWorkouts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Workouts/EditUserWorkout/5 (For logged-in users)
+        [Authorize]
+        public async Task<IActionResult> EditUserWorkout(int? id)
         {
             if (id == null)
             {
@@ -100,17 +66,14 @@ namespace FitApp.Controllers
                 return NotFound();
             }
 
-            if (!User.Identity.IsAuthenticated)
-            {
-                return Unauthorized();
-            }
             return View(userWorkout);
         }
 
-        // POST: UserSpecificWorkouts/Edit/5
+        // POST: Workouts/EditUserWorkout/5 (For logged-in users)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Duration,CaloriesBurned")] UserSpecificWorkout userWorkout)
+        [Authorize]
+        public async Task<IActionResult> EditUserWorkout(int id, [Bind("Id,Name,Description,Duration,CaloriesBurned")] UserSpecificWorkout userWorkout)
         {
             if (id != userWorkout.Id)
             {
@@ -141,22 +104,14 @@ namespace FitApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                // Log validation errors
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                foreach (var error in errors)
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
+                return RedirectToAction(nameof(MyWorkouts));
             }
             return View(userWorkout);
         }
 
-        // GET: UserSpecificWorkouts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Workouts/DeleteUserWorkout/5 (For logged-in users)
+        [Authorize]
+        public async Task<IActionResult> DeleteUserWorkout(int? id)
         {
             if (id == null)
             {
@@ -175,10 +130,11 @@ namespace FitApp.Controllers
             return View(userWorkout);
         }
 
-        // POST: UserSpecificWorkouts/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Workouts/DeleteUserWorkout/5 (For logged-in users)
+        [HttpPost, ActionName("DeleteUserWorkout")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [Authorize]
+        public async Task<IActionResult> DeleteUserWorkoutConfirmed(int id)
         {
             var userId = _userManager.GetUserId(User);
             var userWorkout = await _context.UserSpecificWorkouts
@@ -191,7 +147,47 @@ namespace FitApp.Controllers
 
             _context.UserSpecificWorkouts.Remove(userWorkout);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(MyWorkouts));
+        }
+
+        // GET: Workouts/MyWorkouts (For logged-in users)
+        [Authorize]
+        public async Task<IActionResult> MyWorkouts()
+        {
+            var userId = _userManager.GetUserId(User);
+            var userWorkouts = _context.UserSpecificWorkouts
+                .Where(uw => uw.UserId == userId);
+
+            return View(await userWorkouts.ToListAsync());
+        }
+
+        // POST: Workouts/SaveWorkout (For logged-in users)
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveWorkout(int workoutId)
+        {
+            var userId = _userManager.GetUserId(User);
+            var workout = await _context.Workouts.FindAsync(workoutId);
+
+            if (workout == null)
+            {
+                return NotFound();
+            }
+
+            var userWorkout = new UserSpecificWorkout
+            {
+                UserId = userId,
+                Name = workout.Name,
+                Description = workout.Description,
+                Duration = workout.Duration,
+                CaloriesBurned = workout.CaloriesBurned
+            };
+
+            _context.UserSpecificWorkouts.Add(userWorkout);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(MyWorkouts));
         }
 
         private bool UserSpecificWorkoutExists(int id)
