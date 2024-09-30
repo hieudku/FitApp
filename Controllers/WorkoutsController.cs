@@ -65,6 +65,7 @@ namespace FitApp.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            Console.WriteLine("CREATE SUCCESSFUL");
             return View();
         }
 

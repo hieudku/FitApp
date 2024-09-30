@@ -10,7 +10,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditUserWorkout">
+        <form asp-action="EditUserWorkout" method="post" id="updateForm">
+
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group">
@@ -34,7 +35,7 @@
                 <span asp-validation-for="CaloriesBurned" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <button type="button" class="btn btn-danger" onclick="confirmSave()">Save</button>
             </div>
         </form>
     </div>
@@ -43,3 +44,11 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script type="text/javascript">
+    function confirmSave() {
+        if (confirm("Are you sure you want to update this workout?")) {
+            // If confirmed, submit the form
+            document.getElementById("updateForm").submit();
+        }
+    }
+</script>

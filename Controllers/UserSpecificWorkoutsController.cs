@@ -41,6 +41,8 @@ namespace FitApp.Controllers
             if (ModelState.IsValid)
             {
                 userWorkout.UserId = _userManager.GetUserId(User);
+                // Debug log info
+                Console.WriteLine($"Creating UserSpecificWorkout for UserId: {userWorkout.UserId}, Name: {userWorkout.Name}, Description: {userWorkout.Description}, Duration: {userWorkout.Duration}, CaloriesBurned: {userWorkout.CaloriesBurned}");
                 _context.UserSpecificWorkouts.Add(userWorkout);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(MyWorkouts));
@@ -90,6 +92,8 @@ namespace FitApp.Controllers
             {
                 try
                 {
+                    // Debug log info
+                    Console.WriteLine($"Editing UserSpecificWorkout for UserId: {userWorkout.UserId}, Name: {userWorkout.Name}, Description: {userWorkout.Description}, Duration: {userWorkout.Duration}, CaloriesBurned: {userWorkout.CaloriesBurned}");
                     _context.Update(userWorkout);
                     await _context.SaveChangesAsync();
                 }
@@ -188,6 +192,45 @@ namespace FitApp.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(MyWorkouts));
+        }
+
+
+
+        // GET: Workouts (All users can view the workouts)
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (_context.UserSpecificWorkouts == null)
+            {
+                return Problem("Entity set 'FitAppContext.Workouts' is null");
+            }
+
+            var userWorkout = from w in _context.UserSpecificWorkouts select w;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                userWorkout = userWorkout.Where(s => s.Name!.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            return View(await userWorkout.ToListAsync());
+        }
+        [Authorize]
+        // GET: Workouts/Details/5 (Users can view their own workout details)
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var userWorkout = await _context.UserSpecificWorkouts
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (userWorkout == null)
+            {
+                return NotFound();
+            }
+
+            return View(userWorkout);
         }
 
         private bool UserSpecificWorkoutExists(int id)
