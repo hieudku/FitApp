@@ -3,47 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FitApp.Data;
 using FitApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace FitApp.Controllers
 {
     public class WorkoutsController : Controller
     {
         private readonly FitAppContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public WorkoutsController(FitAppContext context)
+        public WorkoutsController(FitAppContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Workouts
         public async Task<IActionResult> Index(string searchString)
         {
-            // Search
             if (_context.Workouts == null)
             {
                 return Problem("Entity set 'FitAppContext.Workouts' is null");
             }
+
             var workouts = from w in _context.Workouts
                            select w;
-            if (!String.IsNullOrEmpty(searchString))
+
+            if (!string.IsNullOrEmpty(searchString))
             {
                 workouts = workouts.Where(s => s.Name!.ToUpper().Contains(searchString.ToUpper()));
             }
+
             return View(await workouts.ToListAsync());
         }
 
-        
-        [HttpPost]
-        public string Index(string searchString, bool noyUsed)
-        {
-            return "From [HttpPost] Index: filter on " + searchString;
-        }
-        
         // GET: Workouts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -54,6 +51,7 @@ namespace FitApp.Controllers
 
             var workouts = await _context.Workouts
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (workouts == null)
             {
                 return NotFound();
@@ -70,8 +68,6 @@ namespace FitApp.Controllers
         }
 
         // POST: Workouts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -104,8 +100,6 @@ namespace FitApp.Controllers
         }
 
         // POST: Workouts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -150,6 +144,7 @@ namespace FitApp.Controllers
 
             var workouts = await _context.Workouts
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (workouts == null)
             {
                 return NotFound();
@@ -168,15 +163,45 @@ namespace FitApp.Controllers
             if (workouts != null)
             {
                 _context.Workouts.Remove(workouts);
+                await _context.SaveChangesAsync();
             }
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        // POST: Workouts/SaveWorkout
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveWorkout(int workoutId)
+        {
+            var userId = _userManager.GetUserId(User);
+            var userWorkout = new UserWorkout
+            {
+                UserId = userId,
+                WorkoutId = workoutId
+            };
+
+            _context.UserWorkouts.Add(userWorkout);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool WorkoutsExists(int id)
         {
             return _context.Workouts.Any(e => e.Id == id);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> MyWorkouts()
+        {
+            var userId = _userManager.GetUserId(User);
+            var userWorkouts = _context.UserWorkouts
+                .Include(uw => uw.Workout)
+                .Where(uw => uw.UserId == userId);
+
+            return View(await userWorkouts.ToListAsync());
         }
     }
 }

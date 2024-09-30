@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b/NZ5BQ1qywUbIGLkpcKxBACE9FtaqsWOqeEdF08Ixiyk5MLjbnDUsQCgbaZ6rpvJbylghG7B3hK4CI9jnvYAQ==",
+  "dgSpecHash": "W2YJIr/af271B6VoLMlH87XEeDuTc+VhLbvtZbn3nQXQzTsmCRpeKPaKvOuoTiOVqIKD61zZnmrMmtsk20rOjA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\FitApp\\FitApp.csproj",
+  "projectFilePath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\FitApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hieuc\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -56,6 +56,11 @@
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </form>
+                    <form asp-action="SaveWorkout" asp-route-workoutId="@item.Id" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                    </form>
                 </td>
             </tr>
         }
