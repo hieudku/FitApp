@@ -27,8 +27,10 @@
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">@workout.Name</h5>
-                            <p class="card-text">@workout.Description</p>
+                            <h5 class="card-title">
+                                <i class="fas fa-dumbbell"></i> @workout.Name <i class="fas fa-dumbbell"></i>
+                            </h5>
+                            <p class="card-text">Click below for more info</p>
                             <a asp-action="Details" asp-route-id="@workout.Id" asp-controller="Workouts" class="btn btn-info">View Details</a>
                         </div>
                     </div>
@@ -45,5 +47,5 @@
 <div class="container text-center mt-5">
     <h2>About FitApp</h2>
     <p>FitApp is designed to help you keep track of your fitness journey. Create, manage workouts and monitor your progress.</p>
-    <a class="btn btn-secondary" href="#">Learn More</a>
+    <a class="btn btn-secondary" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Learn More</a>
 </div>
