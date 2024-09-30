@@ -17,67 +17,91 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FitApp
 build_property.RootNamespace = FitApp
-build_property.ProjectDir = C:\Users\hieuc\source\repos\FitApp\FitApp\
+build_property.ProjectDir = C:\Users\hieuc\source\repos\FitApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\hieuc\source\repos\FitApp\FitApp
+build_property.MSBuildProjectDirectory = C:\Users\hieuc\source\repos\FitApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Home/Index.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Home/Privacy.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Shared/Error.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Workouts/Create.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/UserSpecificWorkouts/CreateUserWorkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNwZWNpZmljV29ya291dHNcQ3JlYXRlVXNlcldvcmtvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hieuc/source/repos/FitApp/Views/UserSpecificWorkouts/DeleteUserWorkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNwZWNpZmljV29ya291dHNcRGVsZXRlVXNlcldvcmtvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hieuc/source/repos/FitApp/Views/UserSpecificWorkouts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNwZWNpZmljV29ya291dHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hieuc/source/repos/FitApp/Views/UserSpecificWorkouts/EditUserWorkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNwZWNpZmljV29ya291dHNcRWRpdFVzZXJXb3Jrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hieuc/source/repos/FitApp/Views/UserSpecificWorkouts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNwZWNpZmljV29ya291dHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hieuc/source/repos/FitApp/Views/UserSpecificWorkouts/MyWorkouts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNwZWNpZmljV29ya291dHNcTXlXb3Jrb3V0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hieuc/source/repos/FitApp/Views/Workouts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya291dHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Workouts/Delete.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Workouts/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya291dHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Workouts/Details.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Workouts/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya291dHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Workouts/Edit.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Workouts/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya291dHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Workouts/Index.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Workouts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya291dHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/_ViewImports.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/_ViewStart.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hieuc/source/repos/FitApp/FitApp/Views/Shared/_Layout.cshtml]
+[C:/Users/hieuc/source/repos/FitApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-wppjyjbqz7
