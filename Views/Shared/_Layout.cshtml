@@ -32,6 +32,15 @@
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
+
+                    <ul class="navbar-nav ml-auto">
+                        @if (User.IsInRole("Admin"))  // Check if the logged-in user is an admin
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Admin" asp-action="Users">Manage Users</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

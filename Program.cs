@@ -13,7 +13,7 @@ builder.Services.AddDbContext<FitAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FitAppContext") ?? throw new InvalidOperationException("Connection string 'FitAppContext' not found.")));
 
 // Add Identity with default options (confirm account is false for now)
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()  // Add support for Roles
     .AddEntityFrameworkStores<FitAppContext>();
 

@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityUser
+
+<h1>Delete User</h1>
+
+<p>Are you sure you want to delete the following user?</p>
+
+<div>
+    <h4>@Model.Email</h4>
+    <p><strong>Username:</strong> @Model.UserName</p>
+</div>
+
+<form asp-action="DeleteUser" method="post" id="deleteForm">
+    <input type="hidden" asp-for="Id" />
+    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Delete</button> <!-- JavaScript-triggered deletion -->
+    <a asp-action="Users" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script type="text/javascript">
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete this user?")) {
+            // If confirmed, submit the form
+            document.getElementById("deleteForm").submit();
+        }
+    }
+</script>
