@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FitApp.Models.UserWorkout>
+﻿@model IEnumerable<FitApp.Models.UserSpecificWorkout>
 
 @{
     ViewData["Title"] = "My Workouts";
@@ -6,20 +6,24 @@
 
 <h1>My Workouts</h1>
 
+<p>
+    <a asp-action="CreateUserWorkout" class="btn btn-primary">Create New Workout</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Workout.Name)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Workout.Description)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Workout.Duration)
+                @Html.DisplayNameFor(model => model.Duration)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Workout.CaloriesBurned)
+                @Html.DisplayNameFor(model => model.CaloriesBurned)
             </th>
             <th></th>
         </tr>
@@ -29,25 +33,22 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Workout.Name)
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Workout.Description)
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Workout.Duration)
+                    @Html.DisplayFor(modelItem => item.Duration)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Workout.CaloriesBurned)
+                    @Html.DisplayFor(modelItem => item.CaloriesBurned)
                 </td>
                 <td class="text-center">
-                    <a asp-action="Details" asp-route-id="@item.Workout.Id" class="btn btn-info btn-sm">
-                        <i class="fas fa-info-circle"></i>
-                    </a>
-                    <a asp-action="Edit" asp-route-id="@item.Workout.Id" class="btn btn-warning btn-sm">
+                    <a asp-action="EditUserWorkout" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <form asp-action="Delete" asp-route-id="@item.Workout.Id" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this workout?');">
+                    <form asp-action="DeleteUserWorkout" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this workout?');">
                         <button type="submit" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>
                         </button>

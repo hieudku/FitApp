@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using FitApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 builder.Services.AddDbContext<FitAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FitAppContext") ?? throw new InvalidOperationException("Connection string 'FitAppContext' not found.")));
 
@@ -50,7 +53,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
 
 app.MapControllerRoute(
     name: "default",

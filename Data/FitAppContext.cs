@@ -17,5 +17,6 @@ namespace FitApp.Data
 
         public DbSet<FitApp.Models.Workouts> Workouts { get; set; } = default!;
         public DbSet<FitApp.Models.UserWorkout> UserWorkouts { get; set; } = default!;
+        public DbSet<FitApp.Models.UserSpecificWorkout> UserSpecificWorkouts { get; set; } = default!;
     }
 }

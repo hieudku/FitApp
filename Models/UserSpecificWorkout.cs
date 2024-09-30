@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitApp.Models
 {
-    public class UserWorkout
+    public class UserSpecificWorkout
     {
         [Key]
         public int Id { get; set; }
@@ -16,9 +16,15 @@ namespace FitApp.Models
         public IdentityUser? User { get; set; }
 
         [Required]
-        public int WorkoutId { get; set; }
+        public string? Name { get; set; }
 
-        [ForeignKey("WorkoutId")]
-        public Workouts? Workout { get; set; }
+        public string? Description { get; set; }
+
+        [Required]
+        public TimeSpan Duration { get; set; }
+
+        [Required]
+        [Range(0, float.MaxValue)]
+        public float CaloriesBurned { get; set; }
     }
 }
