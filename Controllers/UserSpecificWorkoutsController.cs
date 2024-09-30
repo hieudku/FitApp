@@ -8,6 +8,8 @@ using FitApp.Data;
 using FitApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+
 
 namespace FitApp.Controllers
 {
@@ -16,11 +18,12 @@ namespace FitApp.Controllers
     {
         private readonly FitAppContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-
-        public UserSpecificWorkoutsController(FitAppContext context, UserManager<IdentityUser> userManager)
+        private readonly ILogger<UserSpecificWorkoutsController> _logger;
+        public UserSpecificWorkoutsController(FitAppContext context, UserManager<IdentityUser> userManager, ILogger<UserSpecificWorkoutsController> logger)
         {
             _context = context;
             _userManager = userManager;
+            _logger = logger;
         }
 
         // USER-SPECIFIC WORKOUTS OPERATIONS (for all users)
@@ -84,12 +87,18 @@ namespace FitApp.Controllers
             if (ModelState.IsValid)
             {
                 userWorkout.UserId = _userManager.GetUserId(User);
-                // Debug log info
-                Console.WriteLine($"Creating UserSpecificWorkout for UserId: {userWorkout.UserId}, Name: {userWorkout.Name}, Description: {userWorkout.Description}, Duration: {userWorkout.Duration}, CaloriesBurned: {userWorkout.CaloriesBurned}");
+
+                // Log the creation of a new workout
+                _logger.LogInformation("Creating UserSpecificWorkout for UserId: {UserId}, Name: {Name}, Description: {Description}, Duration: {Duration}, CaloriesBurned: {CaloriesBurned}",
+                    userWorkout.UserId, userWorkout.Name, userWorkout.Description, userWorkout.Duration, userWorkout.CaloriesBurned);
+
                 _context.UserSpecificWorkouts.Add(userWorkout);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(MyWorkouts));
             }
+
+            // Log the validation failure
+            _logger.LogWarning("CreateUserWorkout model state invalid. Model: {Model}", ModelState);
             return View(userWorkout);
         }
 
@@ -122,12 +131,14 @@ namespace FitApp.Controllers
         {
             if (id != userWorkout.Id)
             {
+                _logger.LogWarning("Workout ID mismatch: passed Id {Id} does not match workout Id {WorkoutId}", id, userWorkout.Id);
                 return NotFound();
             }
 
             var userId = _userManager.GetUserId(User);
             if (userWorkout.UserId != userId)
             {
+                _logger.LogWarning("Unauthorized edit attempt. UserId: {UserId}, WorkoutId: {WorkoutId}", userId, userWorkout.Id);
                 return Unauthorized();
             }
 
@@ -135,26 +146,34 @@ namespace FitApp.Controllers
             {
                 try
                 {
-                    // Debug log info
-                    Console.WriteLine($"Editing UserSpecificWorkout for UserId: {userWorkout.UserId}, Name: {userWorkout.Name}, Description: {userWorkout.Description}, Duration: {userWorkout.Duration}, CaloriesBurned: {userWorkout.CaloriesBurned}");
+                    // Log the workout update
+                    _logger.LogInformation("Editing UserSpecificWorkout for UserId: {UserId}, WorkoutId: {WorkoutId}, Name: {Name}, Description: {Description}, Duration: {Duration}, CaloriesBurned: {CaloriesBurned}",
+                        userWorkout.UserId, userWorkout.Id, userWorkout.Name, userWorkout.Description, userWorkout.Duration, userWorkout.CaloriesBurned);
+
                     _context.Update(userWorkout);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!UserSpecificWorkoutExists(userWorkout.Id))
                     {
+                        _logger.LogError(ex, "Concurrency error while updating non-existing UserSpecificWorkout with Id: {WorkoutId}", userWorkout.Id);
                         return NotFound();
                     }
                     else
                     {
+                        _logger.LogError(ex, "Concurrency error while updating UserSpecificWorkout with Id: {WorkoutId}", userWorkout.Id);
                         throw;
                     }
                 }
                 return RedirectToAction(nameof(MyWorkouts));
             }
+
+            // Log validation failure
+            _logger.LogWarning("EditUserWorkout model state invalid for WorkoutId: {WorkoutId}. Model: {Model}", userWorkout.Id, ModelState);
             return View(userWorkout);
         }
+
 
         // GET: Workouts/DeleteUserWorkout/5 (For logged-in users)
         [Authorize]
