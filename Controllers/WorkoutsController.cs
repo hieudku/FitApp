@@ -22,19 +22,45 @@ namespace FitApp.Controllers
             _userManager = userManager;
         }
 
-        // GET: Workouts (All users can view the workouts)
-        public async Task<IActionResult> Index(string searchString)
+        // GET: Workouts Search and Sort
+        // GET: Workouts
+        public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
-            if (_context.Workouts == null)
+            // Create sorting parameters for different columns
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DurationSortParm"] = sortOrder == "Duration" ? "duration_desc" : "Duration";
+            ViewData["CaloriesSortParm"] = sortOrder == "Calories" ? "calories_desc" : "Calories";
+
+            // Filter workouts if search string is provided
+            var workouts = from w in _context.Workouts
+                           select w;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return Problem("Entity set 'FitAppContext.Workouts' is null");
+                workouts = workouts.Where(w => w.Name.Contains(searchString) || w.Description.Contains(searchString));
             }
 
-            var workouts = from w in _context.Workouts select w;
-
-            if (!string.IsNullOrEmpty(searchString))
+            // Apply sorting logic based on the sort order parameter
+            switch (sortOrder)
             {
-                workouts = workouts.Where(s => s.Name!.ToUpper().Contains(searchString.ToUpper()));
+                case "name_desc":
+                    workouts = workouts.OrderByDescending(w => w.Name);
+                    break;
+                case "Duration":
+                    workouts = workouts.OrderBy(w => w.Duration);
+                    break;
+                case "duration_desc":
+                    workouts = workouts.OrderByDescending(w => w.Duration);
+                    break;
+                case "Calories":
+                    workouts = workouts.OrderBy(w => w.CaloriesBurned);
+                    break;
+                case "calories_desc":
+                    workouts = workouts.OrderByDescending(w => w.CaloriesBurned);
+                    break;
+                default:
+                    workouts = workouts.OrderBy(w => w.Name);
+                    break;
             }
 
             return View(await workouts.ToListAsync());
