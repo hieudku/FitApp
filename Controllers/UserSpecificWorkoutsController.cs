@@ -24,6 +24,49 @@ namespace FitApp.Controllers
         }
 
         // USER-SPECIFIC WORKOUTS OPERATIONS (for all users)
+        // GET: Workouts (All users can view the workouts)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        {
+            var userId = _userManager.GetUserId(User); // Fetching current user
+            var userWorkouts = from w in _context.UserSpecificWorkouts
+                               where w.UserId == userId
+                               select w;
+
+            // Search functionality
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                userWorkouts = userWorkouts.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            // Sorting functionality
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CaloriesSortParm"] = sortOrder == "Calories" ? "calories_desc" : "Calories";
+            ViewData["DurationSortParm"] = sortOrder == "Duration" ? "duration_desc" : "Duration";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    userWorkouts = userWorkouts.OrderByDescending(w => w.Name);
+                    break;
+                case "Calories":
+                    userWorkouts = userWorkouts.OrderBy(w => w.CaloriesBurned);
+                    break;
+                case "calories_desc":
+                    userWorkouts = userWorkouts.OrderByDescending(w => w.CaloriesBurned);
+                    break;
+                case "Duration":
+                    userWorkouts = userWorkouts.OrderBy(w => w.Duration);
+                    break;
+                case "duration_desc":
+                    userWorkouts = userWorkouts.OrderByDescending(w => w.Duration);
+                    break;
+                default:
+                    userWorkouts = userWorkouts.OrderBy(w => w.Name);
+                    break;
+            }
+
+            return View("MyWorkouts", await userWorkouts.ToListAsync());
+        }
 
         // GET: Workouts/CreateUserWorkout (For logged-in users)
         [Authorize]
@@ -194,25 +237,6 @@ namespace FitApp.Controllers
             return RedirectToAction(nameof(MyWorkouts));
         }
 
-
-
-        // GET: Workouts (All users can view the workouts)
-        public async Task<IActionResult> Index(string searchString)
-        {
-            if (_context.UserSpecificWorkouts == null)
-            {
-                return Problem("Entity set 'FitAppContext.Workouts' is null");
-            }
-
-            var userWorkout = from w in _context.UserSpecificWorkouts select w;
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                userWorkout = userWorkout.Where(s => s.Name!.ToUpper().Contains(searchString.ToUpper()));
-            }
-
-            return View(await userWorkout.ToListAsync());
-        }
         [Authorize]
         // GET: Workouts/Details/5 (Users can view their own workout details)
         public async Task<IActionResult> Details(int? id)

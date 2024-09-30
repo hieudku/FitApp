@@ -10,20 +10,31 @@
     <a asp-action="CreateUserWorkout" class="btn btn-primary">Create New Workout</a>
 </p>
 
+<form asp-action="Index" method="get" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Search Workouts">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
+<!-- Sort Links -->
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Workout Name</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Duration)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DurationSortParm"]">Duration</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CaloriesBurned)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CaloriesSortParm"]">Calories Burned</a>
             </th>
             <th></th>
         </tr>
