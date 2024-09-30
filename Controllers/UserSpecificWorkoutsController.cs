@@ -11,116 +11,91 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FitApp.Controllers
 {
-    public class WorkoutsController : Controller
+    [Authorize]
+    public class UserSpecificWorkoutsController : Controller
     {
         private readonly FitAppContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public WorkoutsController(FitAppContext context, UserManager<IdentityUser> userManager)
+        public UserSpecificWorkoutsController(FitAppContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
-        // GET: Workouts (All users can view the workouts)
-        public async Task<IActionResult> Index(string searchString)
-        {
-            if (_context.Workouts == null)
-            {
-                return Problem("Entity set 'FitAppContext.Workouts' is null");
-            }
+        // USER-SPECIFIC WORKOUTS OPERATIONS (for all users)
 
-            var workouts = from w in _context.Workouts select w;
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                workouts = workouts.Where(s => s.Name!.ToUpper().Contains(searchString.ToUpper()));
-            }
-
-            return View(await workouts.ToListAsync());
-        }
-
-        // GET: Workouts/Details/5 (All users can view details)
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var workouts = await _context.Workouts
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (workouts == null)
-            {
-                return NotFound();
-            }
-
-            return View(workouts);
-        }
-
-        // ADMIN-ONLY CRUD OPERATIONS FOR MASTER Workouts
-
-        // GET: Workouts/Create (Admin only)
-        [Authorize(Roles = "Admin")]
-        public IActionResult Create()
+        // GET: Workouts/CreateUserWorkout (For logged-in users)
+        [Authorize]
+        public IActionResult CreateUserWorkout()
         {
             return View();
         }
 
-        // POST: Workouts/Create (Admin only)
+        // POST: Workouts/CreateUserWorkout (For logged-in users)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Name,Description,Duration,CaloriesBurned")] Workouts workout)
+        [Authorize]
+        public async Task<IActionResult> CreateUserWorkout([Bind("Name,Description,Duration,CaloriesBurned")] UserSpecificWorkout userWorkout)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(workout);
+                userWorkout.UserId = _userManager.GetUserId(User);
+                _context.UserSpecificWorkouts.Add(userWorkout);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(MyWorkouts));
             }
-            return View(workout);
+            return View(userWorkout);
         }
 
-        // GET: Workouts/Edit/5 (Admin only)
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Workouts/EditUserWorkout/5 (For logged-in users)
+        [Authorize]
+        public async Task<IActionResult> EditUserWorkout(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var workout = await _context.Workouts.FindAsync(id);
-            if (workout == null)
+            var userId = _userManager.GetUserId(User);
+            var userWorkout = await _context.UserSpecificWorkouts
+                .FirstOrDefaultAsync(uw => uw.Id == id && uw.UserId == userId);
+
+            if (userWorkout == null)
             {
                 return NotFound();
             }
-            return View(workout);
+
+            return View(userWorkout);
         }
 
-        // POST: Workouts/Edit/5 (Admin only)
+        // POST: Workouts/EditUserWorkout/5 (For logged-in users)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Duration,CaloriesBurned")] Workouts workout)
+        [Authorize]
+        public async Task<IActionResult> EditUserWorkout(int id, [Bind("Id,Name,Description,Duration,CaloriesBurned")] UserSpecificWorkout userWorkout)
         {
-            if (id != workout.Id)
+            if (id != userWorkout.Id)
             {
                 return NotFound();
+            }
+
+            var userId = _userManager.GetUserId(User);
+            if (userWorkout.UserId != userId)
+            {
+                return Unauthorized();
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(workout);
+                    _context.Update(userWorkout);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WorkoutExists(workout.Id))
+                    if (!UserSpecificWorkoutExists(userWorkout.Id))
                     {
                         return NotFound();
                     }
@@ -129,46 +104,30 @@ namespace FitApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(MyWorkouts));
             }
-            return View(workout);
+            return View(userWorkout);
         }
 
-        // GET: Workouts/Delete/5 (Admin only)
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Workouts/DeleteUserWorkout/5 (For logged-in users)
+        [Authorize]
+        public async Task<IActionResult> DeleteUserWorkout(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var workout = await _context.Workouts
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (workout == null)
+            var userId = _userManager.GetUserId(User);
+            var userWorkout = await _context.UserSpecificWorkouts
+                .FirstOrDefaultAsync(uw => uw.Id == id && uw.UserId == userId);
+
+            if (userWorkout == null)
             {
                 return NotFound();
             }
 
-            return View(workout);
-        }
-
-        // POST: Workouts/Delete/5 (Admin only)
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var workout = await _context.Workouts.FindAsync(id);
-            _context.Workouts.Remove(workout);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        // HELPER METHOD FOR WORKOUT EXISTENCE
-        private bool WorkoutExists(int id)
-        {
-            return _context.Workouts.Any(e => e.Id == id);
+            return View(userWorkout);
         }
 
         // POST: Workouts/DeleteUserWorkout/5 (For logged-in users)
@@ -228,7 +187,7 @@ namespace FitApp.Controllers
             _context.UserSpecificWorkouts.Add(userWorkout);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(MyWorkouts));
         }
 
         private bool UserSpecificWorkoutExists(int id)
