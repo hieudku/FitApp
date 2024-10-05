@@ -13,6 +13,18 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FitApp.Tests
 {
+    /// <summary>
+    /// This test class uses mock objects to simulate the behavior of the WorkoutsController in a controlled environment.
+    /// By using Moq, we mock the DbSet and DbContext (FitAppContext.cs)to avoid hitting a real database. 
+    /// This allows us to test the controller's behavior, such as filtering, sorting, and CRUD operations, without requiring actual data access.
+    /// 
+    /// Key functionalities tested include:
+    /// 1. **Read Operation (Index)**: Verifying the controller retrieves and displays workouts correctly, including search and sorting logic.
+    /// 2. **Create Operation**: Testing if workouts can be added and saved correctly.
+    /// 3. **Edit Operation**: Testing if workouts can be updated, handling both valid and invalid inputs.
+    /// 4. **Delete Operation**: Testing if workouts are deleted as expected.
+    /// </summary>
+    /// 
     [TestClass]
     public class WorkoutsControllerTests
     {
@@ -44,6 +56,7 @@ namespace FitApp.Tests
             // Initialize the controller with the mock context
             _controller = new WorkoutsController(_mockContext.Object, null);
         }
+
 
         /// <summary>
         /// READ: Tests that the Index method returns the correct list of workouts.
