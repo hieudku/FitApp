@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitAppUnitTest", "FitAppUnitTest\FitAppUnitTest.csproj", "{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitApp", "FitAppSourceCode\FitApp.csproj", "{F23C49AD-A7C4-49FD-8970-6919A60768D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutsControllerUnitTest", "WorkoutsControllerUnitTest\WorkoutsControllerUnitTest.csproj", "{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F23C49AD-A7C4-49FD-8970-6919A60768D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F23C49AD-A7C4-49FD-8970-6919A60768D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F23C49AD-A7C4-49FD-8970-6919A60768D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F23C49AD-A7C4-49FD-8970-6919A60768D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
