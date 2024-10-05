@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UserSpecificWorkoutsControllerTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ae6baaa72308869781af6419f34007dd8ae1318")]
 [assembly: System.Reflection.AssemblyProductAttribute("UserSpecificWorkoutsControllerTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UserSpecificWorkoutsControllerTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitApp", "FitAppSourceCode\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutsControllerUnitTest", "WorkoutsControllerUnitTest\WorkoutsControllerUnitTest.csproj", "{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSpecificWorkoutsControllerTest", "UserSpecificWorkoutsTest\UserSpecificWorkoutsControllerTest.csproj", "{EE97D5BE-D8A5-4996-A966-553463CEF1C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE97D5BE-D8A5-4996-A966-553463CEF1C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE97D5BE-D8A5-4996-A966-553463CEF1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE97D5BE-D8A5-4996-A966-553463CEF1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE97D5BE-D8A5-4996-A966-553463CEF1C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
