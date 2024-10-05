@@ -46,7 +46,7 @@ namespace FitApp.Tests
         }
 
         /// <summary>
-        /// Tests that the Index method returns the correct list of workouts.
+        /// READ: Tests that the Index method returns the correct list of workouts.
         /// </summary>
         [TestMethod]
         public void Index_ReturnsCorrectWorkouts()
@@ -78,7 +78,7 @@ namespace FitApp.Tests
 
 
         /// <summary>
-        /// Tests that admin users can access the Create view.
+        /// CREATE: Tests that admin users can access the Create view.
         /// </summary>
         [TestMethod]
         public void Create_AdminUser_CanAccessCreateView()
@@ -105,7 +105,7 @@ namespace FitApp.Tests
 
 
         /// <summary>
-        /// Tests that non-admin users cannot access the Create view.
+        /// CREATE: Tests that non-admin users cannot access the Create view.
         /// </summary>
         [TestMethod]
         public void Create_NonAdminUser_CannotAccessCreateView()
@@ -133,7 +133,7 @@ namespace FitApp.Tests
 
 
         /// <summary>
-        /// Tests that admin users can access the Delete view.
+        /// DELETE: Tests that admin users can access the Delete view.
         /// </summary>
         /// 
         [TestMethod]
@@ -167,7 +167,7 @@ namespace FitApp.Tests
         }
 
         /// <summary>
-        /// Tests that non-admin users cannot access the Delete view.
+        /// DELETE: Tests that non-admin users cannot access the Delete view.
         /// </summary>
         /// 
         [TestMethod]
@@ -195,7 +195,7 @@ namespace FitApp.Tests
         }
 
         /// <summary>
-        /// Tests that users can save workouts.
+        /// UPDATE: Tests that users can save workouts to profile.
         /// </summary>
         /// 
         [TestMethod]
@@ -264,8 +264,7 @@ namespace FitApp.Tests
         }
 
         /// <summary>
-        /// Tests that GET Edit return correct workout & 
-        /// the controller return not found if does'nt exist.
+        /// UPDATE: Tests that GET Edit return correct workouts.
         /// </summary>
         /// 
         [TestMethod]
@@ -297,6 +296,10 @@ namespace FitApp.Tests
             Assert.AreEqual(workout, model);
         }
 
+        /// <summary>
+        /// UPDATE: Tests that the controller return not found if does'nt exist.
+        /// </summary>
+        /// 
         [TestMethod]
         public async Task GetEdit_WorkoutDoesNotExist_ReturnsNotFound()
         {
@@ -323,7 +326,7 @@ namespace FitApp.Tests
 
 
         /// <summary>
-        /// Tests that POST Edit update correctly when valid.
+        /// UPDATE: Tests that POST Edit update correctly when valid.
         /// It returns NotFound if the workout ID doesn’t match.
         /// </summary>
         /// 
@@ -358,6 +361,10 @@ namespace FitApp.Tests
             Assert.AreEqual("Index", result.ActionName);
         }
 
+        /// <summary>
+        /// UPDATE: Test returns NotFound if the workout ID doesn’t match.
+        /// </summary>
+        /// 
         [TestMethod]
         public async Task PostEdit_WorkoutIdMismatch_ReturnsNotFound()
         {
@@ -381,5 +388,79 @@ namespace FitApp.Tests
             // Assert - Verify that NotFound is returned for ID mismatch
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
         }
+
+
+        /// <summary>
+        /// SEARCH: Test that the search filter is applied correctly by verifying that 
+        /// only the workouts matching the search term are returned
+        /// </summary>
+        /// 
+        [TestMethod]
+        public void Index_Searching_ReturnsFilteredWorkouts()
+        {
+            // Arrange
+            var workouts = new List<Workouts>
+        {
+            new Workouts { Id = 1, Name = "Yoga", Description = "Relaxing workout" },
+            new Workouts { Id = 2, Name = "HIIT", Description = "High intensity" },
+            new Workouts { Id = 3, Name = "Cardio", Description = "Endurance training" }
+        }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Workouts>>();
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.Provider).Returns(workouts.Provider);
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.Expression).Returns(workouts.Expression);
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.ElementType).Returns(workouts.ElementType);
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.GetEnumerator()).Returns(workouts.GetEnumerator());
+
+            _mockContext.Setup(c => c.Workouts).Returns(mockSet.Object);
+
+            // Act
+            var result = _controller.Index("Yoga", "").Result as ViewResult;
+            var model = result.Model as List<Workouts>;
+
+            // Assert - Check that only the "Yoga" workout is returned
+            Assert.IsNotNull(model);
+            Assert.AreEqual(1, model.Count);
+            Assert.AreEqual("Yoga", model.First().Name);
+        }
+
+
+        /// <summary>
+        /// SORT: Test the sorting functionality by verifying that workouts 
+        /// are returned in the correct order based on the sorting parameter
+        /// only the workouts matching the search term are returned
+        /// </summary>
+        /// 
+        [TestMethod]
+        public void Index_SortingByNameDesc_ReturnsSortedWorkouts()
+        {
+            // Arrange
+            var workouts = new List<Workouts>
+    {
+        new Workouts { Id = 1, Name = "Yoga", Description = "Relaxing workout" },
+        new Workouts { Id = 2, Name = "HIIT", Description = "High intensity" },
+        new Workouts { Id = 3, Name = "Cardio", Description = "Endurance training" }
+    }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Workouts>>();
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.Provider).Returns(workouts.Provider);
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.Expression).Returns(workouts.Expression);
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.ElementType).Returns(workouts.ElementType);
+            mockSet.As<IQueryable<Workouts>>().Setup(m => m.GetEnumerator()).Returns(workouts.GetEnumerator());
+
+            _mockContext.Setup(c => c.Workouts).Returns(mockSet.Object);
+
+            // Act - Sort by name descending
+            var result = _controller.Index("", "name_desc").Result as ViewResult;
+            var model = result.Model as List<Workouts>;
+
+            // Assert - Check that workouts are returned in descending order by name
+            Assert.IsNotNull(model);
+            Assert.AreEqual(3, model.Count);
+            Assert.AreEqual("Yoga", model.First().Name);  // "Yoga" should be first
+            Assert.AreEqual("Cardio", model.Last().Name);  // "Cardio" should be last
+        }
+
+
     }
 }
