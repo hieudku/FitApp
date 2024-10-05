@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitApp", "FitApp.csproj", "{9EA3DA15-0BC4-434A-AF73-37E91D0693F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitAppUnitTest", "FitAppUnitTest\FitAppUnitTest.csproj", "{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9EA3DA15-0BC4-434A-AF73-37E91D0693F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EA3DA15-0BC4-434A-AF73-37E91D0693F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EA3DA15-0BC4-434A-AF73-37E91D0693F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FEAB984-66A4-48E7-AD9D-1801C0804F6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
