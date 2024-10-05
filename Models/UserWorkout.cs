@@ -10,10 +10,10 @@ namespace FitApp.Models
         public int Id { get; set; }
 
         [Required]
-        public string? UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public IdentityUser? User { get; set; }
+        public IdentityUser User { get; set; }
 
         [Required]
         public int WorkoutId { get; set; }
