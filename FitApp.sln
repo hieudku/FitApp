@@ -5,9 +5,11 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitApp", "FitAppSourceCode\FitApp.csproj", "{F23C49AD-A7C4-49FD-8970-6919A60768D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutsControllerUnitTest", "WorkoutsControllerUnitTest\WorkoutsControllerUnitTest.csproj", "{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutsControllerUnitTest", "WorkoutsControllerUnitTest\WorkoutsControllerUnitTest.csproj", "{890582CD-A7DC-4167-ADBD-EADD69A2AF6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSpecificWorkoutsControllerTest", "UserSpecificWorkoutsTest\UserSpecificWorkoutsControllerTest.csproj", "{EE97D5BE-D8A5-4996-A966-553463CEF1C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserSpecificWorkoutsControllerTest", "UserSpecificWorkoutsTest\UserSpecificWorkoutsControllerTest.csproj", "{EE97D5BE-D8A5-4996-A966-553463CEF1C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminControllerUnitTests", "AdminControllerUnitTests\AdminControllerUnitTests.csproj", "{0398B533-7015-4B5E-A9A2-E75F0F1CB7CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{EE97D5BE-D8A5-4996-A966-553463CEF1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE97D5BE-D8A5-4996-A966-553463CEF1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE97D5BE-D8A5-4996-A966-553463CEF1C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0398B533-7015-4B5E-A9A2-E75F0F1CB7CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0398B533-7015-4B5E-A9A2-E75F0F1CB7CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0398B533-7015-4B5E-A9A2-E75F0F1CB7CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0398B533-7015-4B5E-A9A2-E75F0F1CB7CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
