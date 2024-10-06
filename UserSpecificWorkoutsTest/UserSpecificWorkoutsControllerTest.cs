@@ -1,105 +1,315 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using FitApp.Controllers;
 using FitApp.Data;
 using FitApp.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using System.Linq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 
 namespace FitApp.Tests
 {
-    /// <summary>
-    /// This test class uses mock objects to simulate the behavior of the UserSpecificWorkoutsController in a controlled environment.
-    /// By using Moq, we mock the DbSet and DbContext (FitAppContext) to avoid hitting a real database. 
-    /// This allows us to test the controller's behavior, such as filtering, sorting, viewing, and deleting user-specific workouts, without requiring actual data access.
-    ///
-    /// Key functionalities tested include:
-    /// 1. **Read Operation (Index and MyWorkouts)**: Verifying the controller retrieves and displays user-specific workouts correctly, including search and sorting logic.
-    /// 2. **Delete Operation**: Testing if user-specific workouts are fetched correctly for deletion and are deleted as expected.
-    /// 3. **Save Operation**: Testing if a workout from the master list can be saved to the user-specific workout list.
-    /// 4. **Details Operation**: Verifying that a user can view detailed information about their own workouts.
-    /// 
-    /// By mocking dependencies such as UserManager, DbContext, and Logger, the tests focus on controller behavior independently of actual database interactions.
-    /// </summary>
     [TestClass]
     public class UserSpecificWorkoutsControllerTests
     {
+        private Mock<UserManager<IdentityUser>> _userManagerMock;
+        private Mock<ILogger<UserSpecificWorkoutsController>> _loggerMock;
         private FitAppContext _context;
-        private Mock<UserManager<IdentityUser>> _mockUserManager;
-        private Mock<ILogger<UserSpecificWorkoutsController>> _mockLogger;
-        private UserSpecificWorkoutsController _controller;
 
         [TestInitialize]
         public void Setup()
         {
-            // Set up in-memory database options
             var options = new DbContextOptionsBuilder<FitAppContext>()
-                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .UseInMemoryDatabase(databaseName: "FitAppTest")
                 .Options;
-
-            // Create a new FitAppContext using the in-memory database
             _context = new FitAppContext(options);
 
-            _mockUserManager = new Mock<UserManager<IdentityUser>>(
+            _userManagerMock = new Mock<UserManager<IdentityUser>>(
                 Mock.Of<IUserStore<IdentityUser>>(), null, null, null, null, null, null, null, null);
-            _mockLogger = new Mock<ILogger<UserSpecificWorkoutsController>>();
+            _loggerMock = new Mock<ILogger<UserSpecificWorkoutsController>>();
 
-            // Set up a mocked user for testing
-            var user = new IdentityUser { Id = "user1", UserName = "testuser" };
-            var userClaims = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
-            {
-        new Claim(ClaimTypes.NameIdentifier, user.Id)
-            }));
+            // Clear the in-memory database before seeding
+            _context.UserSpecificWorkouts.RemoveRange(_context.UserSpecificWorkouts);
+            _context.SaveChanges();
 
-            var mockHttpContext = new Mock<HttpContext>();
-            mockHttpContext.Setup(c => c.User).Returns(userClaims);
-
-            var controllerContext = new ControllerContext
-            {
-                HttpContext = mockHttpContext.Object
-            };
-
-            _controller = new UserSpecificWorkoutsController(_context, _mockUserManager.Object, _mockLogger.Object)
-            {
-                ControllerContext = controllerContext
-            };
-
-            // Seed data for testing
-            _context.UserSpecificWorkouts.Add(new UserSpecificWorkout { Id = 1, Name = "Yoga", Description = "Relaxing workout", UserId = "user1" });
-            _context.UserSpecificWorkouts.Add(new UserSpecificWorkout { Id = 2, Name = "HIIT", Description = "High intensity", UserId = "user1" });
+            // Seed the in-memory database with test data
+            _context.UserSpecificWorkouts.AddRange(
+                new UserSpecificWorkout { Id = 1, UserId = "user1", Name = "Workout1", CaloriesBurned = 100, Duration = TimeSpan.FromMinutes(30) },
+                new UserSpecificWorkout { Id = 2, UserId = "user1", Name = "Workout2", CaloriesBurned = 200, Duration = TimeSpan.FromMinutes(45) },
+                new UserSpecificWorkout { Id = 3, UserId = "user2", Name = "Workout3", CaloriesBurned = 150, Duration = TimeSpan.FromMinutes(40) }
+            );
             _context.SaveChanges();
         }
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _context.Database.EnsureDeleted();
-            _context.Dispose();
-        }
-
-        // Test the Index action for listing workouts (with search and sorting)
-        
-
-
-
-        // Test Details (GET)
+        /// <summary>
+        /// READ: Tests that the Index method returns MyWorkouts View and data for logged in user.
+        /// By verifying that view name is MyWorkouts and model contains list of saved (seeded in testing) UserSpecificWorkouts.
+        /// </summary>
+        /// 
         [TestMethod]
-        public async Task Details_Get_WorkoutExists_ReturnsViewWithWorkout()
+        public async Task Index_ReturnsCorrectViewAndData()
         {
-            // Act - Call the Details method
-            var result = await _controller.Details(1) as ViewResult;
-            var model = result.Model as UserSpecificWorkout;
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, "user1")
+            }, "mock"));
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
+
+            _userManagerMock.Setup(um => um.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
+
+            // Act
+            var result = await controller.Index(null, null) as ViewResult;
 
             // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("MyWorkouts", result.ViewName);
+            var model = result.Model as List<UserSpecificWorkout>;
             Assert.IsNotNull(model);
-            Assert.AreEqual("Yoga", model.Name); // Verify that the workout is "Yoga"
+            Assert.AreEqual(2, model.Count);
+            Assert.AreEqual("Workout1", model[0].Name);
+            Assert.AreEqual("Workout2", model[1].Name);
         }
+
+        /// <summary>
+        /// DELETE: Tests that the DeleteUserWorkout method returns NotFound when the provided ID is null (user ID not found or missing).
+        /// </summary>
+        /// 
+        [TestMethod]
+        public async Task DeleteUserWorkout_ReturnsNotFound_WhenIdIsNull()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+
+            // Act
+            var result = await controller.DeleteUserWorkout(null);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
+
+        /// <summary>
+        /// DELETE: Tests that the DeleteUserWorkout method returns NotFound when the workout with the provided ID is not found.
+        /// </summary>
+        /// 
+        [TestMethod]
+        public async Task DeleteUserWorkout_ReturnsNotFound_WhenWorkoutNotFound()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+            {
+        new Claim(ClaimTypes.NameIdentifier, "user1")
+            }, "mock"));
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
+
+            // Act
+            var result = await controller.DeleteUserWorkout(999);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
+
+        /// <summary>
+        /// READ: Tests that the Details method returns NotFound when the provided ID is null.
+        /// Where assume the ID parameter is missing (null).
+        /// </summary>
+        /// 
+        [TestMethod]
+        public async Task Details_ReturnsNotFound_WhenIdIsNull()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+
+            // Act
+            var result = await controller.Details(null);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
+
+        /// <summary>
+        /// Tests that the Details method returns NotFound when the workout with the provided ID is not found.
+        /// This makes sure that the method correctly handles cases where the specified workout does not exist in the database.
+        /// </summary>
+        [TestMethod]
+        public async Task Details_ReturnsNotFound_WhenWorkoutNotFound()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+
+            // Act
+            var result = await controller.Details(999);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
+
+        /// <summary>
+        /// Tests that the Details method returns a ViewResult (Details view) with the correct UserSpecificWorkout when a valid ID is provided.
+        /// To verifies that the method retrieves and displays the correct workout details for the logged-in user
+        /// 
+        [TestMethod]
+        public async Task Details_ReturnsViewResult_WithUserWorkout()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+
+            // Act
+            var result = await controller.Details(1) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            var model = result.Model as UserSpecificWorkout;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(1, model.Id);
+        }
+
+        /// <summary>
+        /// FILTER: Tests that the Index method correctly filters workouts based on the search string
+        /// This ensures that only workouts matching the search term are returned.
+        /// </summary>
+        /// 
+        [TestMethod]
+        public async Task Index_FiltersWorkouts_BySearchString()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+            {
+        new Claim(ClaimTypes.NameIdentifier, "user1")
+            }, "mock"));
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
+
+            _userManagerMock.Setup(um => um.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
+
+            // Act
+            var result = await controller.Index(null, "Workout1") as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("MyWorkouts", result.ViewName);
+            var model = result.Model as List<UserSpecificWorkout>;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(1, model.Count);
+            Assert.AreEqual("Workout1", model[0].Name);
+        }
+
+
+        /// <summary>
+        /// Tests that the Index method correctly sorts workouts by name in descending order
+        /// that workouts are sorted by name in the correct order.
+        /// </summary>
+        [TestMethod]
+        public async Task Index_SortsWorkouts_ByNameDescending()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+            {
+        new Claim(ClaimTypes.NameIdentifier, "user1")
+            }, "mock"));
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
+
+            _userManagerMock.Setup(um => um.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
+
+            // Act
+            var result = await controller.Index("name_desc", null) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("MyWorkouts", result.ViewName);
+            var model = result.Model as List<UserSpecificWorkout>;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(2, model.Count);
+            Assert.AreEqual("Workout2", model[0].Name); // Workout2 is on top of Workout1 in descending order
+            Assert.AreEqual("Workout1", model[1].Name);
+        }
+
+        /// <summary>
+        /// Tests that the Index method correctly sorts workouts by calories burned in ascending order
+        /// that workouts are sorted by calories burned in the correct order.
+        /// </summary>
+        [TestMethod]
+        public async Task Index_SortsWorkouts_ByCaloriesAscending()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+            {
+        new Claim(ClaimTypes.NameIdentifier, "user1")
+            }, "mock"));
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
+
+            _userManagerMock.Setup(um => um.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
+
+            // Act
+            var result = await controller.Index("Calories", null) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("MyWorkouts", result.ViewName);
+            var model = result.Model as List<UserSpecificWorkout>;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(2, model.Count);
+            Assert.AreEqual(100, model[0].CaloriesBurned); // 100 is on top of 200 in ascending order
+            Assert.AreEqual(200, model[1].CaloriesBurned);
+        }
+
+        /// <summary>
+        /// SORT: Tests that the Index method correctly sorts workouts by duration in descending order
+        /// that workouts are sorted by duration in the correct order.
+        /// </summary>
+        [TestMethod]
+        public async Task Index_SortsWorkouts_ByDurationDescending()
+        {
+            // Arrange
+            var controller = new UserSpecificWorkoutsController(_context, _userManagerMock.Object, _loggerMock.Object);
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+            {
+        new Claim(ClaimTypes.NameIdentifier, "user1")
+            }, "mock"));
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
+
+            _userManagerMock.Setup(um => um.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
+
+            // Act
+            var result = await controller.Index("duration_desc", null) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("MyWorkouts", result.ViewName);
+            var model = result.Model as List<UserSpecificWorkout>;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(2, model.Count);
+            Assert.AreEqual(TimeSpan.FromMinutes(45), model[0].Duration); // 45 mins is on top of 30 mins in descending order
+            Assert.AreEqual(TimeSpan.FromMinutes(30), model[1].Duration);
+        }
+
     }
 }

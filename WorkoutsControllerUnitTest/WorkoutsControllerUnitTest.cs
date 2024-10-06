@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Identity;
 namespace FitApp.Tests
 {
     /// <summary>
-    /// This test class uses mock objects to simulate the behavior of the WorkoutsController in a controlled environment.
+    /// This test class uses mock objects to simulate the behavior of the UserSpecificWorkoutsController in a controlled environment.
     /// By using Moq, we mock the DbSet and DbContext (FitAppContext.cs)to avoid hitting a real database. 
     /// This allows us to test the controller's behavior, such as filtering, sorting, and CRUD operations, without requiring actual data access.
     /// 

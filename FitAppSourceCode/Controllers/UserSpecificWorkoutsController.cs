@@ -28,7 +28,7 @@ namespace FitApp.Controllers
 
         // USER-SPECIFIC WORKOUTS OPERATIONS (for all users)
         // GET: Workouts (All users can view the workouts)
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString) // Index provides search, sort and view list of user workouts
         {
             var userId = _userManager.GetUserId(User); // Fetching current user
             var userWorkouts = from w in _context.UserSpecificWorkouts
