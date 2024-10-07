@@ -11,6 +11,9 @@
           "MSTest.TestAdapter": "3.1.1",
           "MSTest.TestFramework": "3.1.1",
           "Microsoft.NET.Test.Sdk": "17.8.0",
+          "Selenium.Support": "4.25.0",
+          "Selenium.WebDriver": "4.25.0",
+          "Selenium.WebDriver.ChromeDriver": "129.0.6668.8900",
           "coverlet.collector": "6.0.0",
           "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions": "14.0.0.0"
         },
@@ -346,6 +349,26 @@
           }
         }
       },
+      "Selenium.Support/4.25.0": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.25.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Selenium.WebDriver/4.25.0": {
+        "runtime": {
+          "lib/net8.0/WebDriver.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/129.0.6668.8900": {},
       "System.Reflection.Metadata/1.6.0": {},
       "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions/14.0.0.0": {
         "runtime": {
@@ -425,6 +448,27 @@
       "sha512": "sha512-QWINE2x3MbTODsWT1Gh71GaGb5icBz4chS8VYvTgsBnsi8esgN6wtHhydd7fvToWECYGq7T4cgBBDiKD/363fg==",
       "path": "nuget.frameworks/6.5.0",
       "hashPath": "nuget.frameworks.6.5.0.nupkg.sha512"
+    },
+    "Selenium.Support/4.25.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nIWkD1kth4Taq2XgDuvPv2xDpFzm3SODvfmuuTGvYYFYHAteWcOeczwsVMQErLtwKjEwfdGO0B9dwDr+i5ZEkQ==",
+      "path": "selenium.support/4.25.0",
+      "hashPath": "selenium.support.4.25.0.nupkg.sha512"
+    },
+    "Selenium.WebDriver/4.25.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0g/9I5ennfL2ZaQoXsfEPj+GcqrKlcVr1yxh3C/Eed/acNZrC38OaXLorsuHdAHiGn+QySV3iz8/hFcOXvVcoA==",
+      "path": "selenium.webdriver/4.25.0",
+      "hashPath": "selenium.webdriver.4.25.0.nupkg.sha512"
+    },
+    "Selenium.WebDriver.ChromeDriver/129.0.6668.8900": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rkhEu//U//FG9kphlwxpS28bkMb5tPHt6NNgK3K66cGiz2t6+By48U/wRid2kmTMOA2afmWT901Ou4xTeUh/nw==",
+      "path": "selenium.webdriver.chromedriver/129.0.6668.8900",
+      "hashPath": "selenium.webdriver.chromedriver.129.0.6668.8900.nupkg.sha512"
     },
     "System.Reflection.Metadata/1.6.0": {
       "type": "package",

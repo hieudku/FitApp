@@ -59,6 +59,18 @@
               "target": "Package",
               "version": "[17.8.0, )"
             },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.25.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.25.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[129.0.6668.8900, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[6.0.0, )"

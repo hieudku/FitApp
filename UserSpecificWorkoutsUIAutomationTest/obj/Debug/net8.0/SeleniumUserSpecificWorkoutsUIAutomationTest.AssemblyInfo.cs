@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeleniumUserSpecificWorkoutsUIAutomationTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f13c3116738591254edf789bfd0b1a56846e64fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a903165c832980e8cf4e2d7dd4e1d08a8d91d6b")]
 [assembly: System.Reflection.AssemblyProductAttribute("SeleniumUserSpecificWorkoutsUIAutomationTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SeleniumUserSpecificWorkoutsUIAutomationTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
