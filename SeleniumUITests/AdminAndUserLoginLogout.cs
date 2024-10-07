@@ -22,7 +22,11 @@ namespace SeleniumUITests
         public void TestSetup()
         {
             // Navigate to the home page before each test
+            // for https
             _driver.Navigate().GoToUrl("https://localhost:7082/");
+
+            // for http
+            // _driver.Navigate().GoToUrl("http://localhost:5279/");
             // Delay for 1 seconds
             Thread.Sleep(1000);
         }
