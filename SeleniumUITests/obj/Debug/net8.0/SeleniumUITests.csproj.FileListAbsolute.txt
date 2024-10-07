@@ -115,3 +115,4 @@ C:\Users\hieuc\source\repos\FitApp\SeleniumUITests\obj\Debug\net8.0\refint\Selen
 C:\Users\hieuc\source\repos\FitApp\SeleniumUITests\obj\Debug\net8.0\SeleniumUITests.pdb
 C:\Users\hieuc\source\repos\FitApp\SeleniumUITests\obj\Debug\net8.0\SeleniumUITests.genruntimeconfig.cache
 C:\Users\hieuc\source\repos\FitApp\SeleniumUITests\obj\Debug\net8.0\ref\SeleniumUITests.dll
+C:\Users\hieuc\source\repos\FitApp\SeleniumUITests\bin\Debug\net8.0\SeleniumExtras.WaitHelpers.dll

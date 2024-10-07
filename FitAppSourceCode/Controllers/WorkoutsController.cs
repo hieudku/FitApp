@@ -193,7 +193,7 @@ namespace FitApp.Controllers
         }
 
         // POST: Workouts/Delete/5 (Admin only)
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)

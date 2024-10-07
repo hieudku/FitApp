@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "/oN/aZ1TrOsCWMUtKenJ9YrIUPZ2hiOzEgVqtSIBToNYOUOkBxKDotVExjhIsqMh7FBb48QJgkzC1ymAWdGrPg==",
+  "dgSpecHash": "TPY3p+C9TaWn9suAbJ4Y4qj8ufSvrCIxoA/2Kdoil5A9v7hgZ4pqvgcISeyPHIGS1QvbQqQyLW7anf8rmTF17Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\SeleniumUITests.csproj",
+  "projectFilePath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\SeleniumUITestsLoginLogout.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hieuc\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\microsoft.net.test.sdk\\17.8.0\\microsoft.net.test.sdk.17.8.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.8.0\\microsoft.testplatform.objectmodel.17.8.0.nupkg.sha512",

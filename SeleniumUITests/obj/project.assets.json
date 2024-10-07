@@ -8,6 +8,18 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
+      "DotNetSeleniumExtras.WaitHelpers/3.11.0": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "3.10.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll": {}
+        }
+      },
       "Microsoft.CodeCoverage/17.8.0": {
         "type": "package",
         "compile": {
@@ -482,6 +494,21 @@
         "coverlet-icon.png",
         "coverlet.collector.6.0.0.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "DotNetSeleniumExtras.WaitHelpers/3.11.0": {
+      "sha512": "xc6jVVl5ymgk3ZNWnC/KHxkEup1QpnwYbrwF+NQoCOGERsD8YMlLwmsX4lGhLXCLo/YQTRTIwlKCN9E/doGUNg==",
+      "type": "package",
+      "path": "dotnetseleniumextras.waithelpers/3.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
+        "dotnetseleniumextras.waithelpers.nuspec",
+        "lib/net35/SeleniumExtras.WaitHelpers.dll",
+        "lib/net40/SeleniumExtras.WaitHelpers.dll",
+        "lib/net45/SeleniumExtras.WaitHelpers.dll",
+        "lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll"
       ]
     },
     "Microsoft.CodeCoverage/17.8.0": {
@@ -1088,6 +1115,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
       "MSTest.TestAdapter >= 3.1.1",
       "MSTest.TestFramework >= 3.1.1",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
@@ -1104,9 +1132,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\SeleniumUITests.csproj",
-      "projectName": "SeleniumUITests",
-      "projectPath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\SeleniumUITests.csproj",
+      "projectUniqueName": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\SeleniumUITestsLoginLogout.csproj",
+      "projectName": "SeleniumUITestsLoginLogout",
+      "projectPath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\SeleniumUITestsLoginLogout.csproj",
       "packagesPath": "C:\\Users\\hieuc\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\obj\\",
       "projectStyle": "PackageReference",
@@ -1144,6 +1172,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "DotNetSeleniumExtras.WaitHelpers": {
+            "target": "Package",
+            "version": "[3.11.0, )"
+          },
           "MSTest.TestAdapter": {
             "target": "Package",
             "version": "[3.1.1, )"
