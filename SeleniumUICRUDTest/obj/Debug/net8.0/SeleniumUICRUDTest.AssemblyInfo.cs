@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeleniumUICRUDTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4e83664fa6cb48b462ea43f3a7a082bb73c0d5c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SeleniumUICRUDTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SeleniumUICRUDTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

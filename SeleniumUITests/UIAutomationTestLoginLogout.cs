@@ -31,12 +31,39 @@ namespace SeleniumUITests
             Thread.Sleep(1000);
         }
 
+        [TestMethod]
+        public void aRegisterUser_ShouldRedirectToUserHome()
+        {
+            // Go to register page
+            _driver.Navigate().GoToUrl("https://localhost:7082/Identity/Account/Register");
+
+            // Delay for 1 seconds
+            Thread.Sleep(1000);
+
+            // Find Id for inputs, then enter registration details with correct passwords
+            _driver.FindElement(By.Id("Input_Email")).SendKeys("selenium@fitapp.com");
+            _driver.FindElement(By.Id("Input_Password")).SendKeys("Test123!");
+            _driver.FindElement(By.Id("Input_ConfirmPassword")).SendKeys("Test123!");
+
+            // Delay for 1 seconds
+            Thread.Sleep(1000);
+            _driver.FindElement(By.Id("registerSubmit")).Click();
+
+            // Assert that login was successful by checking if the Logout button is accessible.
+            var logoutButton = _driver.FindElement(By.Id("Logout_Button"));
+            Assert.IsNotNull(logoutButton, "Login was not successful.");
+
+            // Delay for 1 seconds, then log out
+            Thread.Sleep(1000);
+            logoutButton.Click();
+        }
+
         /// <summary>
         /// This test verifies if seeded admin credentials are able to log in
         /// by checking the manage user button, which is reserved for admin privileges only.
         /// </summary>
         [TestMethod]
-        public void Login_WithValidAdminCredentials_ShouldRedirectToHome()
+        public void bLogin_WithValidAdminCredentials_ShouldRedirectToHome()
         {
             // Go to login page
             _driver.Navigate().GoToUrl("https://localhost:7082/Identity/Account/Login");
@@ -80,7 +107,7 @@ namespace SeleniumUITests
         /// and unable to access manage users button.
         /// </summary>
         [TestMethod]
-        public void Login_WithValidUserCredentials_ShouldRedirectToHome()
+        public void cLogin_WithValidUserCredentials_ShouldRedirectToHome()
         {
             // Go to login page
             _driver.Navigate().GoToUrl("https://localhost:7082/Identity/Account/Login");

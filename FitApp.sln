@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminControllerUnitTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumUITestsLoginLogout", "SeleniumUITests\SeleniumUITestsLoginLogout.csproj", "{D3EA592D-4937-4BB8-9870-5B1692494CAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumUICRUDTest", "SeleniumUICRUDTest\SeleniumUICRUDTest.csproj", "{8624F6E5-FD9B-441D-B713-E3A37E95C8D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumUICRUDTest", "SeleniumUICRUDTest\SeleniumUICRUDTest.csproj", "{8624F6E5-FD9B-441D-B713-E3A37E95C8D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumUserSpecificWorkoutsUIAutomationTest", "UserSpecificWorkoutsUIAutomationTest\SeleniumUserSpecificWorkoutsUIAutomationTest.csproj", "{B69F8867-67F2-4225-8233-B890A6293B4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8624F6E5-FD9B-441D-B713-E3A37E95C8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8624F6E5-FD9B-441D-B713-E3A37E95C8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8624F6E5-FD9B-441D-B713-E3A37E95C8D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B69F8867-67F2-4225-8233-B890A6293B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69F8867-67F2-4225-8233-B890A6293B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69F8867-67F2-4225-8233-B890A6293B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69F8867-67F2-4225-8233-B890A6293B4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
