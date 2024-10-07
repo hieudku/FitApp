@@ -40,7 +40,7 @@
 
   ```bash
   dotnet run
-
+or Ctrl + F5
 ### For Entity Framework Core
 
 - Running migrations to make sure database is up-to-date. :point_down:
