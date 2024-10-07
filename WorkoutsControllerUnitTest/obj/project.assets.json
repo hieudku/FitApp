@@ -2724,6 +2724,44 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "Selenium.Support/4.25.0": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.25.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Selenium.WebDriver/4.25.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/WebDriver.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/WebDriver.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Selenium.WebDriver.targets": {}
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/129.0.6668.8900": {
+        "type": "package",
+        "build": {
+          "build/Selenium.WebDriver.ChromeDriver.targets": {}
+        }
+      },
       "System.CodeDom/5.0.0": {
         "type": "package",
         "compile": {
@@ -3449,7 +3487,10 @@
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.NET.Test.Sdk": "17.11.1",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.5"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.5",
+          "Selenium.Support": "4.25.0",
+          "Selenium.WebDriver": "4.25.0",
+          "Selenium.WebDriver.ChromeDriver": "129.0.6668.8900"
         },
         "compile": {
           "bin/placeholder/FitApp.dll": {}
@@ -8025,6 +8066,66 @@
         "nuget.versioning.nuspec"
       ]
     },
+    "Selenium.Support/4.25.0": {
+      "sha512": "nIWkD1kth4Taq2XgDuvPv2xDpFzm3SODvfmuuTGvYYFYHAteWcOeczwsVMQErLtwKjEwfdGO0B9dwDr+i5ZEkQ==",
+      "type": "package",
+      "path": "selenium.support/4.25.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/WebDriver.Support.dll",
+        "lib/netstandard2.0/WebDriver.Support.xml",
+        "selenium.support.4.25.0.nupkg.sha512",
+        "selenium.support.nuspec"
+      ]
+    },
+    "Selenium.WebDriver/4.25.0": {
+      "sha512": "0g/9I5ennfL2ZaQoXsfEPj+GcqrKlcVr1yxh3C/Eed/acNZrC38OaXLorsuHdAHiGn+QySV3iz8/hFcOXvVcoA==",
+      "type": "package",
+      "path": "selenium.webdriver/4.25.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Selenium.WebDriver.targets",
+        "buildTransitive/Selenium.WebDriver.targets",
+        "icon.png",
+        "lib/net8.0/WebDriver.dll",
+        "lib/net8.0/WebDriver.xml",
+        "lib/netstandard2.0/WebDriver.dll",
+        "lib/netstandard2.0/WebDriver.xml",
+        "manager/linux/selenium-manager",
+        "manager/macos/selenium-manager",
+        "manager/windows/selenium-manager.exe",
+        "selenium.webdriver.4.25.0.nupkg.sha512",
+        "selenium.webdriver.nuspec"
+      ]
+    },
+    "Selenium.WebDriver.ChromeDriver/129.0.6668.8900": {
+      "sha512": "rkhEu//U//FG9kphlwxpS28bkMb5tPHt6NNgK3K66cGiz2t6+By48U/wRid2kmTMOA2afmWT901Ou4xTeUh/nw==",
+      "type": "package",
+      "path": "selenium.webdriver.chromedriver/129.0.6668.8900",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "build/DefinePropertiesChromeDriver.targets",
+        "build/Selenium.WebDriver.ChromeDriver.targets",
+        "driver/linux64/LICENSE.chromedriver",
+        "driver/linux64/chromedriver",
+        "driver/mac64/LICENSE.chromedriver",
+        "driver/mac64/chromedriver",
+        "driver/mac64arm/LICENSE.chromedriver",
+        "driver/mac64arm/chromedriver",
+        "driver/win32/LICENSE.chromedriver",
+        "driver/win32/chromedriver.exe",
+        "nupkg-icon.png",
+        "selenium.webdriver.chromedriver.129.0.6668.8900.nupkg.sha512",
+        "selenium.webdriver.chromedriver.nuspec"
+      ]
+    },
     "System.CodeDom/5.0.0": {
       "sha512": "JPJArwA1kdj8qDAkY2XGjSWoYnqiM7q/3yRNkt6n28Mnn95MuEGkZXUbPBf7qc3IjwrGY5ttQon7yqHZyQJmOQ==",
       "type": "package",
@@ -9422,6 +9523,9 @@
       "MSTest.TestFramework >= 3.1.1",
       "Microsoft.NET.Test.Sdk >= 17.11.1",
       "Moq >= 4.20.72",
+      "Selenium.Support >= 4.25.0",
+      "Selenium.WebDriver >= 4.25.0",
+      "Selenium.WebDriver.ChromeDriver >= 129.0.6668.8900",
       "coverlet.collector >= 6.0.0"
     ]
   },
@@ -9491,6 +9595,18 @@
           "Moq": {
             "target": "Package",
             "version": "[4.20.72, )"
+          },
+          "Selenium.Support": {
+            "target": "Package",
+            "version": "[4.25.0, )"
+          },
+          "Selenium.WebDriver": {
+            "target": "Package",
+            "version": "[4.25.0, )"
+          },
+          "Selenium.WebDriver.ChromeDriver": {
+            "target": "Package",
+            "version": "[129.0.6668.8900, )"
           },
           "coverlet.collector": {
             "target": "Package",

@@ -654,3 +654,8 @@ C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\obj\Debug\net8.0\ref
 C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\obj\Debug\net8.0\AdminControllerUnitTests.pdb
 C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\obj\Debug\net8.0\AdminControllerUnitTests.genruntimeconfig.cache
 C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\obj\Debug\net8.0\ref\AdminControllerUnitTests.dll
+C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
+C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
+C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
+C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\bin\Debug\net8.0\WebDriver.Support.dll
+C:\Users\hieuc\source\repos\FitApp\AdminControllerUnitTests\bin\Debug\net8.0\WebDriver.dll

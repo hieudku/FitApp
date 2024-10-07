@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "/oN/aZ1TrOsCWMUtKenJ9YrIUPZ2hiOzEgVqtSIBToNYOUOkBxKDotVExjhIsqMh7FBb48QJgkzC1ymAWdGrPg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\SeleniumUITests\\SeleniumUITests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hieuc\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\microsoft.net.test.sdk\\17.8.0\\microsoft.net.test.sdk.17.8.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.8.0\\microsoft.testplatform.objectmodel.17.8.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\microsoft.testplatform.testhost\\17.8.0\\microsoft.testplatform.testhost.17.8.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\mstest.testadapter\\3.1.1\\mstest.testadapter.3.1.1.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\mstest.testframework\\3.1.1\\mstest.testframework.3.1.1.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\nuget.frameworks\\6.5.0\\nuget.frameworks.6.5.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\selenium.support\\4.25.0\\selenium.support.4.25.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\selenium.webdriver\\4.25.0\\selenium.webdriver.4.25.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\selenium.webdriver.chromedriver\\129.0.6668.8900\\selenium.webdriver.chromedriver.129.0.6668.8900.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

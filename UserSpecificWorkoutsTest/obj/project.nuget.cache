@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "leFaHQ5QIR1qqpZyMGV4jLoWR2ss4TA0QF7PpH+4JJEUwCi2X3ewLYTvW5iIQogSa1mjkW5LWWGR3QPaknTm/A==",
+  "dgSpecHash": "L3PDwxHc7knflMh49pX+mhX7Vix/UYmwMIWqqrXXgsip1+CdN7zAp25TPHQMIunXmJnsna2rNwmZCo6GJgzUkw==",
   "success": true,
   "projectFilePath": "C:\\Users\\hieuc\\source\\repos\\FitApp\\UserSpecificWorkoutsTest\\UserSpecificWorkoutsControllerTest.csproj",
   "expectedPackageFiles": [
@@ -158,6 +158,9 @@
     "C:\\Users\\hieuc\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\selenium.support\\4.25.0\\selenium.support.4.25.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\selenium.webdriver\\4.25.0\\selenium.webdriver.4.25.0.nupkg.sha512",
+    "C:\\Users\\hieuc\\.nuget\\packages\\selenium.webdriver.chromedriver\\129.0.6668.8900\\selenium.webdriver.chromedriver.129.0.6668.8900.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
     "C:\\Users\\hieuc\\.nuget\\packages\\system.composition\\7.0.0\\system.composition.7.0.0.nupkg.sha512",

@@ -713,3 +713,8 @@ C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\obj\Debug\net8.0\Use
 C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\obj\Debug\net8.0\UserSpecificWorkoutsControllerTest.genruntimeconfig.cache
 C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\obj\Debug\net8.0\ref\UserSpecificWorkoutsControllerTest.dll
 C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
+C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
+C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
+C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\bin\Debug\net8.0\WebDriver.Support.dll
+C:\Users\hieuc\source\repos\FitApp\UserSpecificWorkoutsTest\bin\Debug\net8.0\WebDriver.dll

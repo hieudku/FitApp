@@ -37,7 +37,7 @@
                         @if (User.IsInRole("Admin"))  // Check if the logged-in user is an admin
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Admin" asp-action="Users">Manage Users</a>
+                                <a id="ManageUser_Button" class="nav-link" asp-controller="Admin" asp-action="Users">Manage Users</a>
                             </li>
                         }
                     </ul>

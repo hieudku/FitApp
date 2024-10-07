@@ -42,12 +42,16 @@ using (var scope = app.Services.CreateScope())
 
         // Seed Admin role and optionally an Admin user
         await CreateRoles(services, logger);
+
+        // Call the method to seed the normal user
+        await CreateNormalUser(services, logger);
     }
     catch (Exception ex)
     {
         logger.LogError(ex, "An error occurred while seeding the admin role and user.");
     }
 }
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -90,7 +94,7 @@ async Task CreateRoles(IServiceProvider serviceProvider, ILogger logger)
         await roleManager.CreateAsync(new IdentityRole("Admin"));
     }
 
-    // Optionally: Create an Admin user if not present
+    // Create an Admin user if not present
     var adminEmail = "admin@fitapp.com";
     var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
@@ -120,5 +124,44 @@ async Task CreateRoles(IServiceProvider serviceProvider, ILogger logger)
     else
     {
         logger.LogInformation("Admin user already exists.");
+    }
+}
+// Method to seed a normal user account
+async Task CreateNormalUser(IServiceProvider serviceProvider, ILogger logger)
+{
+    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    // Define a regular user's credentials
+    var normalUserEmail = "user@fitapp.com";
+    var normalUserPassword = "User123!";
+
+    // Check if the user already exists
+    var normalUser = await userManager.FindByEmailAsync(normalUserEmail);
+
+    if (normalUser == null)
+    {
+        logger.LogInformation("Creating normal user...");
+
+        var user = new IdentityUser
+        {
+            UserName = normalUserEmail,
+            Email = normalUserEmail,
+            EmailConfirmed = true
+        };
+
+        var createUserResult = await userManager.CreateAsync(user, normalUserPassword);
+
+        if (createUserResult.Succeeded)
+        {
+            logger.LogInformation("Normal user created successfully.");
+        }
+        else
+        {
+            logger.LogError("Failed to create normal user: {Errors}", string.Join(", ", createUserResult.Errors.Select(e => e.Description)));
+        }
+    }
+    else
+    {
+        logger.LogInformation("Normal user already exists.");
     }
 }
