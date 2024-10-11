@@ -1,0 +1,23 @@
+﻿@model FitApp.Models.UserSpecificWorkout
+
+@{
+    ViewData["Title"] = "Workout Details";
+}
+
+<h2>Workout Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-2">Name</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+
+    <dt class="col-sm-2">Description</dt>
+    <dd class="col-sm-10">@Model.Description</dd>
+
+    <dt class="col-sm-2">Calories Burned</dt>
+    <dd class="col-sm-10">@Model.CaloriesBurned</dd>
+
+    <dt class="col-sm-2">Duration</dt>
+    <dd class="col-sm-10">@Model.Duration</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
