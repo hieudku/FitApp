@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FitApp.Models.UserSpecificWorkout>
+
+@{
+    ViewData["Title"] = "User-Specific Workouts";
+}
+
+<h2>User-Specific Workouts</h2>
+<p>This test page is used for checking if the logic to save workouts to user profile works. <br />
+    The workouts saved from Workouts Test page will appear here, temporarily <br />
+    since it is in-memory only.</p>
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Calories Burned</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var workout in Model)
+            {
+                <tr>
+                    <td>@workout.Name</td>
+                    <td>@workout.Description</td>
+                    <td>@workout.CaloriesBurned</td>
+                    <td>@workout.Duration</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@workout.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@workout.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No user-specific workouts available yet.</p>
+}

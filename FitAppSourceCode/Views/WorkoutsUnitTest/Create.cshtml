@@ -1,0 +1,23 @@
+﻿@model FitApp.Models.Workouts
+
+<h2>Create Test Workout</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CaloriesBurned"></label>
+        <input asp-for="CaloriesBurned" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Duration"></label>
+        <input asp-for="Duration" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
