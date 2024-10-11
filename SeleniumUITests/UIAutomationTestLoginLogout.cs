@@ -116,8 +116,8 @@ namespace SeleniumUITests
             Thread.Sleep(1000);
 
             // Find Id for inputs, then enter user credentials
-            _driver.FindElement(By.Id("Input_Email")).SendKeys("user@fitapp.com");
-            _driver.FindElement(By.Id("Input_Password")).SendKeys("User123!");
+            _driver.FindElement(By.Id("Input_Email")).SendKeys("selenium@fitapp.com");
+            _driver.FindElement(By.Id("Input_Password")).SendKeys("Test123!");
 
             // Delay for 1 seconds
             Thread.Sleep(1000);

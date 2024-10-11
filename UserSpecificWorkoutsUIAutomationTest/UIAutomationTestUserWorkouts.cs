@@ -36,7 +36,7 @@ namespace CRUDOperationsUITests
         {
             string myWorkoutsHeader = "My Workouts";
             // Log in as admin
-            LogInAsAdmin();
+            LogInAsUser();
 
             // Wait for 1 second
             Thread.Sleep(1000);
@@ -85,7 +85,7 @@ namespace CRUDOperationsUITests
 
             // Verify that the workout is now added to "My Workouts"
             _driver.Navigate().GoToUrl("https://localhost:7082/UserSpecificWorkouts/MyWorkouts");
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             var pageText = _driver.FindElement(By.TagName("body")).Text;
             Assert.IsTrue(pageText.Contains(workoutName), $"Workout '{workoutName}' was not added to the profile.");
